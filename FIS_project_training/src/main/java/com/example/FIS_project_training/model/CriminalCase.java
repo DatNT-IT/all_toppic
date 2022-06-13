@@ -1,11 +1,17 @@
 package com.example.FIS_project_training.model;
 
-import com.example.bai1.enums.CaseStatus;
-import com.example.bai1.enums.CaseType;
+import com.example.FIS_project_training.model.enums.CaseStatus;
+import com.example.FIS_project_training.model.enums.CaseType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-public class CriminalCase {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CriminalCase extends AbstractEntity {
     private String number;
     private CaseType type;
     private String shortDescription;
@@ -13,108 +19,21 @@ public class CriminalCase {
     private CaseStatus status;
     private String notes;
     private Set<Evidence> evidenceSet;
-    private Detective leadinvestigator;
+    private Detective leadInvestigator; // lead
     private Set<Detective> assigned;
 
-    public CriminalCase() {
-    }
-
-    public CriminalCase(String number, CaseType type, String shortDescription, String detailedDescription, CaseStatus status, String notes, Set<Evidence> evidenceSet, Detective leadinvestigator, Set<Detective> assigned) {
-        this.number = number;
-        this.type = type;
-        this.shortDescription = shortDescription;
-        this.detailedDescription = detailedDescription;
-        this.status = status;
-        this.notes = notes;
-        this.evidenceSet = evidenceSet;
-        this.leadinvestigator = leadinvestigator;
-        this.assigned = assigned;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public CaseType getType() {
-        return type;
-    }
-
-    public void setType(CaseType type) {
-        this.type = type;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public String getDetailedDescription() {
-        return detailedDescription;
-    }
-
-    public void setDetailedDescription(String detailedDescription) {
-        this.detailedDescription = detailedDescription;
-    }
-
-    public CaseStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(CaseStatus status) {
-        this.status = status;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Set<Evidence> getEvidenceSet() {
-        return evidenceSet;
-    }
-
-    public void setEvidenceSet(Set<Evidence> evidenceSet) {
-        this.evidenceSet = evidenceSet;
-    }
-
-    public Detective getLeadinvestigator() {
-        return leadinvestigator;
-    }
-
-    public void setLeadinvestigator(Detective leadinvestigator) {
-        this.leadinvestigator = leadinvestigator;
-    }
-
-    public Set<Detective> getAssigned() {
-        return assigned;
-    }
-
-    public void setAssigned(Set<Detective> assigned) {
-        this.assigned = assigned;
-    }
-
     @Override
-    public String toString() {
-        return "CriminalCase{" +
-                "number='" + number + '\'' +
-                ", type=" + type +
-                ", shortDescription='" + shortDescription + '\'' +
-                ", detailedDescription='" + detailedDescription + '\'' +
-                ", status=" + status +
-                ", notes='" + notes + '\'' +
-                ", evidenceSet=" + evidenceSet +
-                ", leadinvestigator=" + leadinvestigator +
-                ", assigned=" + assigned +
-                '}';
+    public int hashCode() {
+        int result = number != null ? number.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (shortDescription != null ? shortDescription.hashCode() : 0);
+        result = 31 * result + (detailedDescription != null ? detailedDescription.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (notes != null ? notes.hashCode() : 0);
+        result = 31 * result + (evidenceSet != null ? evidenceSet.hashCode() : 0);
+        result = 31 * result + (leadInvestigator != null ? leadInvestigator.hashCode() : 0);
+        result = 31 * result + (assigned != null ? assigned.hashCode() : 0);
+        return result;
     }
+
 }

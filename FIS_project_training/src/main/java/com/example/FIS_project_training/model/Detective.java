@@ -1,13 +1,24 @@
 package com.example.FIS_project_training.model;
 
-import com.example.bai1.enums.EmploymentStatus;
-import com.example.bai1.enums.Rank;
+import com.example.FIS_project_training.model.enums.EmploymentStatus;
+import com.example.FIS_project_training.model.enums.Rank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Detective extends AbstractEntity {
-    private Person person;
+
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private LocalDateTime hiringDate;
     private String badgeNumber;
     private Rank rank;
     private Boolean armed;
@@ -15,100 +26,4 @@ public class Detective extends AbstractEntity {
     private Set<CriminalCase> criminalCases;
     private Set<TrackEntry> trackEntries;
 
-    public Detective() {
-    }
-
-    public Detective(Person person, String badgeNumber, Rank rank, Boolean armed, EmploymentStatus status, Set<CriminalCase> criminalCases, Set<TrackEntry> trackEntries) {
-        this.person = person;
-        this.badgeNumber = badgeNumber;
-        this.rank = rank;
-        this.armed = armed;
-        this.status = status;
-        this.criminalCases = criminalCases;
-        this.trackEntries = trackEntries;
-    }
-
-    public Detective(long id, int version, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        super(id, version, createdAt, modifiedAt);
-    }
-
-    public Detective(long id, int version, LocalDateTime createdAt, LocalDateTime modifiedAt, Person person, String badgeNumber, Rank rank, Boolean armed, EmploymentStatus status, Set<CriminalCase> criminalCases, Set<TrackEntry> trackEntries) {
-        super(id, version, createdAt, modifiedAt);
-        this.person = person;
-        this.badgeNumber = badgeNumber;
-        this.rank = rank;
-        this.armed = armed;
-        this.status = status;
-        this.criminalCases = criminalCases;
-        this.trackEntries = trackEntries;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public String getBadgeNumber() {
-        return badgeNumber;
-    }
-
-    public void setBadgeNumber(String badgeNumber) {
-        this.badgeNumber = badgeNumber;
-    }
-
-    public Rank getRank() {
-        return rank;
-    }
-
-    public void setRank(Rank rank) {
-        this.rank = rank;
-    }
-
-    public Boolean getArmed() {
-        return armed;
-    }
-
-    public void setArmed(Boolean armed) {
-        this.armed = armed;
-    }
-
-    public EmploymentStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(EmploymentStatus status) {
-        this.status = status;
-    }
-
-    public Set<CriminalCase> getCriminalCases() {
-        return criminalCases;
-    }
-
-    public void setCriminalCases(Set<CriminalCase> criminalCases) {
-        this.criminalCases = criminalCases;
-    }
-
-    public Set<TrackEntry> getTrackEntries() {
-        return trackEntries;
-    }
-
-    public void setTrackEntries(Set<TrackEntry> trackEntries) {
-        this.trackEntries = trackEntries;
-    }
-
-    @Override
-    public String toString() {
-        return "Detective{" +
-                "person=" + person +
-                ", badgeNumber='" + badgeNumber + '\'' +
-                ", rank=" + rank +
-                ", armed=" + armed +
-                ", status=" + status +
-                ", criminalCases=" + criminalCases +
-                ", trackEntries=" + trackEntries +
-                '}';
-    }
 }
