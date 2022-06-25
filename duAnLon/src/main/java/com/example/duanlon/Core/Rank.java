@@ -1,4 +1,4 @@
-package com.example.duanlon.Core;
+package com.example.duanlon.core;
 
 public enum Rank {
     TRAINEE,

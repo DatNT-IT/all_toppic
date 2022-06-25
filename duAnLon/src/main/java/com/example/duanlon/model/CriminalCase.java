@@ -1,12 +1,16 @@
 package com.example.duanlon.model;
 
-import com.example.duanlon.Core.CaseStatus;
-import com.example.duanlon.Core.CaseType;
+import com.example.duanlon.core.CaseStatus;
+import com.example.duanlon.core.CaseType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Data
@@ -30,17 +34,29 @@ public class CriminalCase extends AbstractEntity {
     @NotEmpty
     @Enumerated(EnumType.STRING)
     private String notes;
+    @OneToMany(mappedBy = "criminalCase")
+    @Transient
+    private Set<Evidence> evidenceSet;
     @ManyToOne
     @JoinColumn(name = "LEAD_INVESTIGATOR", nullable = false)
     private Detective leadInvestigator;
-//    @ManyToMany
-//    @JoinTable(
-//            name="detective_case",
-//            joinColumns=@JoinColumn(name="case_id",
-//                    referencedColumnName="id"),
-//            inverseJoinColumns=@JoinColumn(name="detective_id",
-//                    referencedColumnName="id"))
-//    private Set<Evidence> evidenceSet;
-    //private Set<Detective> assigned = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "working_detective_case",
+            joinColumns = @JoinColumn(name = "criminal_Case_id"),
+            inverseJoinColumns = @JoinColumn(name = "detective_id"))
+    private Set<Detective> assigned ;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CriminalCase that = (CriminalCase) o;
+        return Objects.equals(number, that.number) && type == that.type && Objects.equals(shortDescription, that.shortDescription) && Objects.equals(detailedDescription, that.detailedDescription) && status == that.status && Objects.equals(notes, that.notes) && Objects.equals(evidenceSet, that.evidenceSet) && Objects.equals(leadInvestigator, that.leadInvestigator) && Objects.equals(assigned, that.assigned);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), number, type, shortDescription, detailedDescription, status, notes, evidenceSet, leadInvestigator, assigned);
+    }
 }

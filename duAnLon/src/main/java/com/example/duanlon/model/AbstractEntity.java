@@ -25,4 +25,7 @@ public abstract class AbstractEntity implements Serializable {
     @Column(name = "modified_at", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:MM:ss")
     protected LocalDateTime modifiedAt;
+    protected AbstractEntity() {
+        modifiedAt = LocalDateTime.now();
+    }
 }

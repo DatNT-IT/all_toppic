@@ -1,14 +1,17 @@
 package com.example.duanlon.model;
 
-import com.example.duanlon.Core.EmploymentStatus;
-import com.example.duanlon.Core.Rank;
+import com.example.duanlon.core.EmploymentStatus;
+import com.example.duanlon.core.Rank;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Data
 public class Detective extends AbstractEntity{
     @NotNull
     @OneToOne
@@ -22,14 +25,22 @@ public class Detective extends AbstractEntity{
     private Boolean armed = false;
     @Enumerated(EnumType.STRING)
     private EmploymentStatus status = EmploymentStatus.ACTIVE;
-    @ManyToMany
-    @JoinTable(
-            name="detective_case",
-            joinColumns=@JoinColumn(name="detective_id",
-                    referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name="case_id",
-                    referencedColumnName="id"))
+    @ManyToMany(mappedBy = "assigned")
     private Set<CriminalCase> criminalCases;
     @OneToMany(mappedBy = "detective")
     private Set<TrackEntry> trackEntries;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Detective detective = (Detective) o;
+        return Objects.equals(person, detective.person) && Objects.equals(badgeNumber, detective.badgeNumber) && rank == detective.rank && Objects.equals(armed, detective.armed) && status == detective.status && Objects.equals(criminalCases, detective.criminalCases) && Objects.equals(trackEntries, detective.trackEntries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), person, badgeNumber, rank, armed, status, criminalCases, trackEntries);
+    }
 }
