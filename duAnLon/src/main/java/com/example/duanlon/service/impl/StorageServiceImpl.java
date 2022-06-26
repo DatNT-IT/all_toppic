@@ -1,5 +1,6 @@
 package com.example.duanlon.service.impl;
 
+import com.example.duanlon.model.CriminalCase;
 import com.example.duanlon.model.Storage;
 import com.example.duanlon.repository.IStorageRepository;
 import com.example.duanlon.service.IStorageService;
@@ -20,9 +21,10 @@ public class StorageServiceImpl implements IStorageService {
     }
 
     @Override
-    public void save(Storage entity) {
+    public Storage save(Storage entity) {
 iStorageRepository.save(entity);
         log.info("Save Storage : {}", entity);
+        return entity;
     }
 
     @Override
@@ -49,12 +51,13 @@ iStorageRepository.delete(entity);
     }
 
     @Override
-    public Storage createStorage(String name, String location) {
-        Storage storage = new Storage();
-        storage.setName(name);
-        storage.setLocation(location);
-        iStorageRepository.save(storage);
-        return storage;
+    public Storage createStorage(Storage storage) {
+        Storage storage1 = new Storage();
+        storage1.setName(storage.getName());
+        storage1.setEvidenceSet(storage.getEvidenceSet());
+        storage1.setLocation(storage.getLocation());
+        iStorageRepository.save(storage1);
+        return storage1;
     }
 
     @Override

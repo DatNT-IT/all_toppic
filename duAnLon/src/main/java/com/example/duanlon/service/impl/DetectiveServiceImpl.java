@@ -1,11 +1,7 @@
 package com.example.duanlon.service.impl;
 
-import com.example.duanlon.core.EmploymentStatus;
 import com.example.duanlon.core.Rank;
-import com.example.duanlon.model.CriminalCase;
-import com.example.duanlon.model.Detective;
-import com.example.duanlon.model.Person;
-import com.example.duanlon.model.TrackEntry;
+import com.example.duanlon.model.*;
 import com.example.duanlon.repository.IDetectiveRepository;
 import com.example.duanlon.service.IDetectiveService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +22,10 @@ public class DetectiveServiceImpl implements IDetectiveService {
     }
 
     @Override
-    public void save(Detective entity) {
+    public Detective save(Detective entity) {
         iDetectiveRepository.save(entity);
         log.info("Save Detective : {}", entity);
+        return entity;
     }
 
     @Override
@@ -55,17 +52,15 @@ iDetectiveRepository.delete(entity);
     }
 
     @Override
-    public Detective createDetective(Person person, Rank rank, String badgeNumber, Boolean armed,
-                                     EmploymentStatus status, Set<CriminalCase> criminalCases,
-                                     Set<TrackEntry> trackEntries) {
+    public Detective createDetective(Detective detec) {
         Detective detective = new Detective();
-        detective.setPerson(person);
-        detective.setRank(rank);
-        detective.setBadgeNumber(badgeNumber);
-        detective.setArmed(armed);
-        detective.setStatus(status);
-        detective.setCriminalCases(criminalCases);
-        detective.setTrackEntries(trackEntries);
+        detective.setPerson(detec.getPerson());
+        detective.setRank(detec.getRank());
+        detective.setBadgeNumber(detec.getBadgeNumber());
+        detective.setArmed(detec.getArmed());
+        detective.setStatus(detec.getStatus());
+        detective.setCriminalCases(detec.getCriminalCases());
+        detective.setTrackEntries(detec.getTrackEntries());
         iDetectiveRepository.save(detective);
         return detective;
     }

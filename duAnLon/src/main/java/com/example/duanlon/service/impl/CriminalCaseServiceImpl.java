@@ -1,17 +1,13 @@
 package com.example.duanlon.service.impl;
 
-import com.example.duanlon.core.CaseStatus;
-import com.example.duanlon.core.CaseType;
 import com.example.duanlon.model.CriminalCase;
-import com.example.duanlon.model.Detective;
-import com.example.duanlon.model.Evidence;
 import com.example.duanlon.repository.ICriminalCaseRepository;
 import com.example.duanlon.service.ICriminalCaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -24,9 +20,10 @@ public class CriminalCaseServiceImpl implements ICriminalCaseService {
     }
 
     @Override
-    public void save(CriminalCase entity) {
+    public CriminalCase save(CriminalCase entity) {
         iCriminalCaseRepository.save(entity);
         log.info("Save CriminalCase : {}", entity);
+        return entity;
     }
 
     @Override
@@ -48,22 +45,23 @@ public class CriminalCaseServiceImpl implements ICriminalCaseService {
     }
 
     @Override
-    public Iterable<CriminalCase> findAll() {
+    public List<CriminalCase> findAll() {
         return iCriminalCaseRepository.findAll();
     }
 
     @Override
-    public CriminalCase createCriminalCase(String number,CaseType type, String shortDescription, String detailedDescription, CaseStatus caseStatus, String notes, Set<Evidence> evidenceSet, Detective leadInvestigator) {
+    public CriminalCase createCriminalCase(CriminalCase crim) {
         CriminalCase criminalCase = new CriminalCase();
-        criminalCase.setNumber(number);
-        criminalCase.setType(type);
-        criminalCase.setDetailedDescription(detailedDescription);
-        criminalCase.setShortDescription(shortDescription);
-        criminalCase.setStatus(caseStatus);
-        criminalCase.setNotes(notes);
-        criminalCase.setEvidenceSet(evidenceSet);
-        criminalCase.setLeadInvestigator(leadInvestigator);
+        criminalCase.setNumber(crim.getNumber());
+        criminalCase.setType(crim.getType());
+        criminalCase.setDetailedDescription(crim.getDetailedDescription());
+        criminalCase.setShortDescription(crim.getShortDescription());
+        criminalCase.setStatus(crim.getStatus());
+        criminalCase.setNotes(crim.getNotes());
+        criminalCase.setEvidenceSet(crim.getEvidenceSet());
+        criminalCase.setLeadInvestigator(crim.getLeadInvestigator());
         iCriminalCaseRepository.save(criminalCase);
         return criminalCase;
     }
+
 }

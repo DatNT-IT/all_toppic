@@ -9,8 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface IEvidenceService  extends IAbstractService<Evidence>{
-    Evidence createEvidence(String number, String notes, Boolean archived, CriminalCase criminalCase,
-                            Storage storage, String itemName, Set<TrackEntry> trackEntries);
+    Evidence createEvidence(Evidence evidence);
     Set<Evidence> findByCriminalCase(CriminalCase criminalCase);
     Optional<Evidence> findByNumber(String evidenceNumber);
 }

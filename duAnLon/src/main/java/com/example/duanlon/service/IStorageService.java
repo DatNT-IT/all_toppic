@@ -5,7 +5,7 @@ import com.example.duanlon.model.Storage;
 import java.util.Optional;
 
 public interface IStorageService extends IAbstractService<Storage>{
-    Storage createStorage(String name, String location);
+    Storage createStorage(Storage storage);
     Optional<Storage> findByName(String name);
     Optional<Storage> findByLocation(String location);
 }

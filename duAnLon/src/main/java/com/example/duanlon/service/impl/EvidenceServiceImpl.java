@@ -2,8 +2,6 @@ package com.example.duanlon.service.impl;
 
 import com.example.duanlon.model.CriminalCase;
 import com.example.duanlon.model.Evidence;
-import com.example.duanlon.model.Storage;
-import com.example.duanlon.model.TrackEntry;
 import com.example.duanlon.repository.IEvidenceRepository;
 import com.example.duanlon.service.IEvidenceService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +22,11 @@ public class EvidenceServiceImpl implements IEvidenceService {
     }
 
     @Override
-    public void save(Evidence entity) {
+    public Evidence save(Evidence entity) {
         iEvidenceRepository.save(entity);
         log.info("Save Evidence : {}", entity);
 
+        return entity;
     }
 
     @Override
@@ -54,16 +53,15 @@ public class EvidenceServiceImpl implements IEvidenceService {
     }
 
     @Override
-    public Evidence createEvidence(String number, String notes, Boolean archived, CriminalCase criminalCase,
-                                   Storage storage, String itemName, Set<TrackEntry> trackEntries) {
+    public Evidence createEvidence(Evidence evidence1) {
         Evidence evidence = new Evidence();
-        evidence.setNumber(number);
-        evidence.setNotes(notes);
-        evidence.setArchived(archived);
-        evidence.setCriminalCase(criminalCase);
-        evidence.setStorage(storage);
-        evidence.setItemName(itemName);
-        evidence.setTrackEntries(trackEntries);
+        evidence.setNumber(evidence.getNumber());
+        evidence.setNotes(evidence1.getNotes());
+        evidence.setArchived(evidence1.getArchived());
+        evidence.setCriminalCase(evidence1.getCriminalCase());
+        evidence.setStorage(evidence1.getStorage());
+        evidence.setItemName(evidence.getItemName());
+        evidence.setTrackEntries(evidence1.getTrackEntries());
         return evidence;
     }
 

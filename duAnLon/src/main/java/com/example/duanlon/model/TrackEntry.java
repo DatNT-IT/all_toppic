@@ -1,6 +1,7 @@
 package com.example.duanlon.model;
 
 import com.example.duanlon.core.TrackAction;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 public class TrackEntry extends AbstractEntity{
     @NotNull
     @Column(name = "date", nullable = false)

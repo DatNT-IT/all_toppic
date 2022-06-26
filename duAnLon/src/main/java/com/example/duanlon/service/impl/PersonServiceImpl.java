@@ -1,12 +1,12 @@
 package com.example.duanlon.service.impl;
 
+import com.example.duanlon.model.CriminalCase;
 import com.example.duanlon.model.Person;
 import com.example.duanlon.repository.IPersonRepository;
 import com.example.duanlon.service.IPersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -18,9 +18,10 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public void save(Person entity) {
+    public Person save(Person entity) {
         iPersonRepository.save(entity);
         log.info("Save Person : {}", entity);
+        return entity;
     }
 
     @Override
@@ -44,5 +45,17 @@ iPersonRepository.delete(entity);
     @Override
     public Iterable<Person> findAll() {
         return iPersonRepository.findAll();
+    }
+
+    @Override
+    public Person createPerson(Person person) {
+    Person person1 = new Person();
+    person1.setUsername(person.getUsername());
+    person1.setFirstName(person.getFirstName());
+    person1.setLastName(person.getLastName());
+    person1.setHiringDate(person.getHiringDate());
+    person1.setPassword(person.getPassword());
+    iPersonRepository.save(person1);
+    return person1;
     }
 }
