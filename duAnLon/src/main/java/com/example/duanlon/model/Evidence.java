@@ -1,5 +1,6 @@
 package com.example.duanlon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +20,8 @@ public class Evidence extends AbstractEntity{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "storage_id")
     private Storage storage;
-    @OneToMany(mappedBy = "evidence",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "evidence",cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<TrackEntry > trackEntries;
 
     @Override

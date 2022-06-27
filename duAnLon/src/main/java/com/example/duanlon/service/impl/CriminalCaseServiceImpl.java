@@ -1,5 +1,6 @@
 package com.example.duanlon.service.impl;
 
+import com.example.duanlon.core.CaseStatus;
 import com.example.duanlon.model.CriminalCase;
 import com.example.duanlon.repository.ICriminalCaseRepository;
 import com.example.duanlon.service.ICriminalCaseService;
@@ -62,6 +63,16 @@ public class CriminalCaseServiceImpl implements ICriminalCaseService {
         criminalCase.setLeadInvestigator(crim.getLeadInvestigator());
         iCriminalCaseRepository.save(criminalCase);
         return criminalCase;
+    }
+
+    @Override
+    public List<CriminalCase> findAllByStatus(CaseStatus status) {
+        return iCriminalCaseRepository.findByStatus(status);
+    }
+
+    @Override
+    public List<CriminalCase> findByAssigned_Username(String username) {
+        return iCriminalCaseRepository.findByAssigned_Username(username);
     }
 
 }

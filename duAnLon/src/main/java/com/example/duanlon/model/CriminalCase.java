@@ -2,6 +2,7 @@ package com.example.duanlon.model;
 
 import com.example.duanlon.core.CaseStatus;
 import com.example.duanlon.core.CaseType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -35,6 +36,7 @@ public class CriminalCase extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private String notes;
     @OneToMany(mappedBy = "criminalCase")
+    @JsonIgnore
     @Transient
     private Set<Evidence> evidenceSet;
     @ManyToOne

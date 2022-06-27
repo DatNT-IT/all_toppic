@@ -1,5 +1,6 @@
 package com.example.duanlon.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ public class Storage extends AbstractEntity{
     private String name;
     private String location;
     @OneToMany(mappedBy = "storage")
+    @JsonIgnore
     private Set<Evidence> evidenceSet;
 
     @Override

@@ -2,6 +2,7 @@ package com.example.duanlon.model;
 
 import com.example.duanlon.core.EmploymentStatus;
 import com.example.duanlon.core.Rank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,9 +26,11 @@ public class Detective extends AbstractEntity{
     private Boolean armed = false;
     @Enumerated(EnumType.STRING)
     private EmploymentStatus status = EmploymentStatus.ACTIVE;
-    @ManyToMany(mappedBy = "assigned")
+    @ManyToMany(mappedBy = "assigned",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<CriminalCase> criminalCases;
     @OneToMany(mappedBy = "detective")
+    @JsonIgnore
     private Set<TrackEntry> trackEntries;
 
     @Override

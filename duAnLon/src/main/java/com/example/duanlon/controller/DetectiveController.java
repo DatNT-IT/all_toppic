@@ -2,7 +2,6 @@ package com.example.duanlon.controller;
 
 import com.example.duanlon.core.DataController;
 import com.example.duanlon.model.Detective;
-import com.example.duanlon.model.Evidence;
 import com.example.duanlon.service.IDetectiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/detective")
+@RequestMapping("/playApi/detective")
 public class DetectiveController {
     @Autowired
     private IDetectiveService detectiveService;

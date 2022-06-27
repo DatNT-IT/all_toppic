@@ -1,9 +1,7 @@
 package com.example.duanlon.controller;
 
 import com.example.duanlon.core.DataController;
-import com.example.duanlon.model.Evidence;
 import com.example.duanlon.model.Person;
-import com.example.duanlon.service.IEvidenceService;
 import com.example.duanlon.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/playApi/person")
 public class PersonController {
     @Autowired
     private IPersonService personService;

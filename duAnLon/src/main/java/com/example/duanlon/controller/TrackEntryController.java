@@ -1,9 +1,7 @@
 package com.example.duanlon.controller;
 
 import com.example.duanlon.core.DataController;
-import com.example.duanlon.model.Evidence;
 import com.example.duanlon.model.TrackEntry;
-import com.example.duanlon.service.IEvidenceService;
 import com.example.duanlon.service.ITrackEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/trackEntry")
+@RequestMapping("/playApi/trackEntry")
 public class TrackEntryController {
     @Autowired
     private ITrackEntryService trackEntryService;

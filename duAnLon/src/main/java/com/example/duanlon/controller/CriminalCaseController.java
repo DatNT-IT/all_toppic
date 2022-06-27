@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/criminalCase")
+@RequestMapping("/playApi/criminalCase")
 public class CriminalCaseController {
     @Autowired
     private ICriminalCaseService iCriminalCaseService;
